@@ -1,9 +1,5 @@
 if SERVER then return end
 
-if GetConVar("snow_tf_camo") == nil then
-		CreateConVar("snow_tf_camo", 0, {FCVAR_USERINFO, FCVAR_SERVER_CAN_EXECUTE, FCVAR_LUA_CLIENT})
-	end
-
 list.Set( "DesktopWindows", "Camo Menu", {
 	title = "Weapon Camos",
 	icon = "icon64/snowtime_camo.png",
@@ -27,7 +23,7 @@ surface.CreateFont("SnowCamo_Secondary", {
 
 function SnowCamoMenu( player )
     local ply = player
-	-- i couldnt figure out how to get it to draw like this, so some borrows from draconic
+	-- i couldnt figure out how to get it to draw like this, so some borrows from draconic base.
     local w2 = ScrW()/2 
     local leftwide = w2
     local leftwidehalf = leftwide / 2
@@ -51,8 +47,6 @@ function SnowCamoMenu( player )
 		draw.SimpleText("Your camo will be seen on other players weapons. This will be fixed in the future.", "SnowCamo_Secondary", leftwidehalf/1.6, topwidehalf/1.44, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		draw.SimpleText("!! WORK IN PROGRESS !!", "SnowCamo_Secondary", leftwidehalf/1.6, topwidehalf/1.375, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
-	
-	local camo_numeral = GetConVarNumber("snow_tf_camo")
 	
 	local camo_img_bg = vgui.Create("DImage", Derma)	-- Add image to Frame
 	camo_img_bg:SetPos(leftwidehalf/2.85, topwidehalf/6.3)	-- Move it into frame
@@ -87,7 +81,10 @@ function SnowCamoMenu( player )
 	camos:SetMax( camocount )
 	camos:SetConVar( "snow_tf_camo" )
 	camos:SetValue( GetConVarNumber( "snow_tf_camo" ) )
+	camos:GetValue( r_s )
 	camos.type = "camos"
+	net.Start("Snow_Camos")
+	net.SendToServer()
 	fg:AddItem( camos )
 	
 	local windowwide = Derma:GetWide()
