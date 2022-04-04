@@ -53,7 +53,7 @@ function SnowCamoMenu( player )
 	camo_img_bg:SetSize(270, 270)	-- Size it to 150x150
 
 	-- Set material relative to "garrysmod/materials/"
-	camo_img_bg:SetImage("models/props_foliage/oak_tree01")
+	camo_img_bg:SetImage("hlmv/floor")
 	
 	-- Image panel of Dr. Breen
 	local camo_img = vgui.Create("DImage", Derma)	-- Add image to Frame

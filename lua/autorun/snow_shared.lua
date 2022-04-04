@@ -25,9 +25,7 @@ if SERVER then
 	
 	net.Receive("Snow_Camos",function(len, ply)
 
-		print("Camo Received: "..ply:Nick())
 		local snow_camo_id = ply:GetInfoNum("snow_tf_camo", 0)
-		print(snow_camo_id)
 		net.Start("Snow_Camos_Send")
 		net.WriteUInt(snow_camo_id, 16)
 		net.Send(ply)
@@ -41,8 +39,6 @@ if CLIENT then
 		
 		local r_s = net.ReadUInt(16)
 		LocalPlayer().SnowTFCamo = r_s
-		print("Camo Received (CL)")
-		print(r_s)
 
 	end)
 end
