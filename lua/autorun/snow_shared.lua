@@ -40,7 +40,7 @@ if CLIENT then
 	net.Receive("Snow_Camos_Send",function()
 		
 		local r_s = net.ReadUInt(16)
-		local SnowTFCamo = r_s
+		LocalPlayer().SnowTFCamo = r_s
 		print("Camo Received (CL)")
 		print(r_s)
 

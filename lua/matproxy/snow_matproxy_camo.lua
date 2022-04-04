@@ -8,18 +8,19 @@ matproxy.Add( {
 		self.Darken = values.darken
 	end,
 
-	bind = function( self, mat, ent )
+	bind = function(self, mat, ent)
 		if !IsValid(ent) then return end
 		local plyr = LocalPlayer()
-		local ply = ent
+		local ply = LocalPlayer()
+		local camo_persist = plyr:GetInfoNum("snow_tf_camo", 0)
 		local camo_numeral = GetConVarNumber("snow_tf_camo")
-		local camo = (ply.SnowTFCamo) or 0
+		local camo = (LocalPlayer().SnowTFCamo) or 0
 		texture = self.Prefix .. camo
 		strength = self.Strength
 		darken = self.Darken
 		local color = Vector( 1 / darken, 1 / darken, 1 / darken )
 		local colordef = Vector( 1, 1, 1 )
-		print(ply)
+		print (LocalPlayer().SnowTFCamo)
 		
 		if texture && camo == 0 then
 			mat:SetTexture("$detail", "")
