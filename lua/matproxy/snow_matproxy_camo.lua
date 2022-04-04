@@ -94,7 +94,7 @@ matproxy.Add( {
 })
 
 
---
+-- I WANTED to have this work, but it still doesnt network at all. If anyone knows how to get this to work, PLEASE, let me know.
 --matproxy.Add( {
 --	name = "SnowTFCamo",
 --	
