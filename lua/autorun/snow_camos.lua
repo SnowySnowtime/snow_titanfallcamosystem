@@ -71,6 +71,15 @@ function SnowCamoMenu( player )
 	fg:DockPadding( 64, 8, 8, 8 )
 	fg:EnableVerticalScrollbar( true )
 	fg:Dock( FILL )
+	net.Start("Snow_Camos")
+	net.SendToServer()
+	
+	local function UpdateCamos( pnl, val )
+		if ( pnl.type == "camos" ) then
+			net.Start("Snow_Camos")
+			net.SendToServer()
+		end
+	end
 	
 	local camocount = 651
 	local camos = vgui.Create( "DNumSlider", sliders )
@@ -83,8 +92,7 @@ function SnowCamoMenu( player )
 	camos:SetValue( GetConVarNumber( "snow_tf_camo" ) )
 	camos:GetValue( r_s )
 	camos.type = "camos"
-	net.Start("Snow_Camos")
-	net.SendToServer()
+	camos.OnValueChanged = UpdateCamos
 	fg:AddItem( camos )
 	
 	local windowwide = Derma:GetWide()
